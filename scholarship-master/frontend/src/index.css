@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .bg-scholarship {
+    background: linear-gradient(135deg, #e0f7fa 0%, #e3f2fd 50%, #f3e5f5 100%);
+    min-height: 100vh;
+    position: relative;
+  }
+
+  .bg-scholarship::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(#2563eb 0.5px, transparent 0.5px), radial-gradient(#2563eb 0.5px, #e5e7eb 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .animate-bounce-in {
+    animation: bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .animate-swing {
+    animation: swing 2s ease infinite;
+    transform-origin: top center;
+  }
+
+  @keyframes bounceIn {
+    0% { opacity: 0; transform: scale(0.3) translateY(-100px); }
+    50% { opacity: 1; transform: scale(1.05) translateY(10px); }
+    70% { transform: scale(0.9) translateY(-5px); }
+    100% { transform: scale(1) translateY(0); }
+  }
+
+  @keyframes swing {
+    0% { transform: rotate(0deg); }
+    20% { transform: rotate(15deg); }
+    40% { transform: rotate(-10deg); }
+    60% { transform: rotate(5deg); }
+    80% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+  }
+}
+
+body {
+  background-color: #f3f4f6;
+  /* gray-100 fallback */
+}
