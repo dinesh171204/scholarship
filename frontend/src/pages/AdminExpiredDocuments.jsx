@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import api from '../services/api';
+import api, { SERVER_BASE_URL } from '../services/api';
 import { AlertTriangle, Clock, User, FileText, CheckCircle, Search, Calendar, ExternalLink } from 'lucide-react';
 
 const AdminExpiredDocs = () => {
@@ -94,7 +94,7 @@ const AdminExpiredDocs = () => {
 
                             <div className="flex gap-3">
                                 <a
-                                    href={`http://localhost:5000${item.fileUrl}`}
+                                    href={`${SERVER_BASE_URL}${item.fileUrl}`}
                                     target="_blank"
                                     rel="noreferrer"
                                     className="flex-1 flex items-center justify-center gap-2 bg-gray-100 text-gray-700 py-3 rounded-xl font-bold text-xs hover:bg-gray-200 transition-all"

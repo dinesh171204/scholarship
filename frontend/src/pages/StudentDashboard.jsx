@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import api from '../services/api';
+import api, { SERVER_BASE_URL } from '../services/api';
 import ApplicationForm from '../components/ApplicationForm';
 import StatusBadge from '../components/StatusBadge';
 import StatusTimeline from '../components/StatusTimeline';
@@ -8,7 +8,7 @@ import io from 'socket.io-client';
 import { useNavigate } from 'react-router-dom';
 import { FileText, RefreshCw, AlertCircle, CheckCircle, Clock, XCircle, Bell, Sparkles } from 'lucide-react';
 
-const socket = io('http://localhost:5000');
+const socket = io(SERVER_BASE_URL);
 
 const getNotificationSubMessage = (status) => {
     switch (status) {
@@ -492,7 +492,7 @@ const StudentDashboard = () => {
                         <div key={doc._id} className="border p-4 rounded flex justify-between items-center">
                             <div>
                                 <p className="font-semibold">{doc.documentType}</p>
-                                <a href={`http://localhost:5000${doc.fileUrl}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline text-sm">View File</a>
+                                <a href={`${SERVER_BASE_URL}${doc.fileUrl}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline text-sm">View File</a>
                             </div>
                             <div className="text-right">
                                 <span className={`text-sm font-bold ${doc.verificationStatus === 'Approved' ? 'text-green-600' : doc.verificationStatus === 'Rejected' ? 'text-red-600' : 'text-gray-600'}`}>

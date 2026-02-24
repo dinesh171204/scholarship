@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
-import api from '../services/api';
+import api, { SERVER_BASE_URL } from '../services/api';
 import { ClipboardList, Send, Clock, CheckCircle2, AlertCircle, FileText, Paperclip, MessageSquare } from 'lucide-react';
 
 const Grievance = () => {
@@ -226,7 +226,7 @@ const Grievance = () => {
                                                             {new Date(ticket.createdAt).toLocaleDateString()}
                                                         </div>
                                                         {ticket.attachment && (
-                                                            <a href={`http://localhost:5000${ticket.attachment}`} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-xs text-blue-600 font-bold hover:underline">
+                                                            <a href={`${SERVER_BASE_URL}${ticket.attachment}`} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-xs text-blue-600 font-bold hover:underline">
                                                                 <FileText className="w-3.5 h-3.5" />
                                                                 View Attachment
                                                             </a>

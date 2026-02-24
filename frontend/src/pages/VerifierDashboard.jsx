@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import api from '../services/api';
+import api, { SERVER_BASE_URL } from '../services/api';
 import StatusBadge from '../components/StatusBadge';
 import AIVerificationBadge from '../components/AIVerificationBadge';
 import { Cpu, RotateCw } from 'lucide-react';
@@ -186,8 +186,7 @@ const VerifierDashboard = () => {
                                         };
 
                                         // Build full URL for document viewing
-                                        const apiBaseUrl = 'http://localhost:5000';
-                                        const documentUrl = `${apiBaseUrl}${doc.fileUrl}`;
+                                        const documentUrl = `${SERVER_BASE_URL}${doc.fileUrl}`;
 
                                         return (
                                             <div key={doc._id} className="flex justify-between items-center border p-3 rounded hover:bg-gray-50 transition">
@@ -236,8 +235,8 @@ const VerifierDashboard = () => {
                                                             </div>
                                                         ) : (
                                                             <span className={`inline-block px-3 py-1 rounded text-xs font-bold ${doc.verificationStatus === 'Approved'
-                                                                    ? 'bg-green-100 text-green-700'
-                                                                    : 'bg-red-100 text-red-700'
+                                                                ? 'bg-green-100 text-green-700'
+                                                                : 'bg-red-100 text-red-700'
                                                                 }`}>
                                                                 {doc.verificationStatus === 'Approved' ? '✓ ' : '✗ '}
                                                                 {doc.verificationStatus}

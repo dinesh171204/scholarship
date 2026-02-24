@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import api from '../services/api';
+import api, { SERVER_BASE_URL } from '../services/api';
 import { MessageSquare, CheckCircle, Clock, AlertCircle, Search, Filter, MessageCircle, Send, X } from 'lucide-react';
 
 const AdminGrievances = () => {
@@ -174,7 +174,7 @@ const AdminGrievances = () => {
                                     <div>
                                         <label className="block text-xs font-black text-gray-400 uppercase mb-2">Supporting Doc</label>
                                         <a
-                                            href={`http://localhost:5000${selectedGrievance.attachment}`}
+                                            href={`${SERVER_BASE_URL}${selectedGrievance.attachment}`}
                                             target="_blank"
                                             rel="noreferrer"
                                             className="block w-full text-center p-3 border-2 border-blue-100 bg-blue-50 text-blue-600 rounded-xl font-bold text-sm hover:bg-blue-100 transition-all"
