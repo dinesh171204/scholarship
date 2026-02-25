@@ -74,9 +74,6 @@ const sendOtp = async (req, res) => {
         await sendSMS(identifier, `Your Smart Scholarship Portal OTP is: ${otp}. Valid for 5 minutes.`);
     }
 
-    // Mock/Secure logging for developers
-    console.log(`[SECURE LOG] OTP generated for ${identifier}: ${otp}`);
-
     // In production, NEVER return the OTP in the JSON response
     res.status(200).json({
         message: 'OTP sent successfully'
