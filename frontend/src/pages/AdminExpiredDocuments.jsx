@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import api, { SERVER_BASE_URL } from '../services/api';
-import { AlertTriangle, Clock, User, FileText, CheckCircle, Search, Calendar, ExternalLink, ShieldAlert, FileX } from 'lucide-react';
+import { AlertTriangle, CheckCircle, Search, Calendar, ExternalLink, ShieldAlert, FileX } from 'lucide-react';
 
 const AdminExpiredDocs = () => {
     const [expiredData, setExpiredData] = useState([]);
