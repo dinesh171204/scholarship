@@ -1,10 +1,8 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import { Target, CheckCircle2, ShieldCheck, Globe, Zap } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
 const About = () => {
-    const navigate = useNavigate();
 
     const objectives = [
         {
@@ -35,70 +33,73 @@ const About = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-[#F8FAFC] font-sans text-slate-800 selection:bg-blue-600 selection:text-white relative overflow-hidden flex flex-col">
+        <div className="min-vh-100 bg-light text-dark position-relative overflow-hidden d-flex flex-column">
             <Navbar />
 
-            {/* Background Details */}
-            <div className="absolute top-0 inset-x-0 h-96 bg-gradient-to-b from-slate-200/50 to-transparent -z-10"></div>
-            <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-blue-100/30 rounded-full filter blur-[100px] -translate-y-1/2 -translate-x-1/3 -z-10"></div>
+            {/* Background Details - approximated with inline styles since Bootstrap lacks these exact utility blurs/gradients out-of-the-box */}
+            <div className="position-absolute top-0 w-100 h-100" style={{ zIndex: -1 }}>
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '400px', background: 'linear-gradient(to bottom, rgba(226, 232, 240, 0.5), transparent)' }}></div>
+                <div style={{ position: 'absolute', top: 0, left: 0, width: '600px', height: '600px', background: 'rgba(219, 234, 254, 0.3)', borderRadius: '50%', filter: 'blur(100px)', transform: 'translate(-33%, -50%)' }}></div>
+            </div>
 
-            <main className="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+            <main className="flex-grow-1 w-100 mx-auto px-3 py-5" style={{ maxWidth: '1000px' }}>
+                <div className="card border-0 shadow-sm rounded-4 overflow-hidden position-relative fade-in-up">
+                    <div style={{ position: 'absolute', top: 0, right: 0, width: '256px', height: '256px', background: 'linear-gradient(to bottom left, #eff6ff, transparent)', zIndex: 0, opacity: 0.7 }}></div>
 
-                <div className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden relative animate-fade-in-up">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-blue-50 to-transparent -z-10 opacity-70"></div>
-
-                    <div className="p-8 md:p-12 lg:p-16">
-
-                        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-slate-100 pb-8">
+                    <div className="card-body p-4 p-md-5 p-lg-5 position-relative" style={{ zIndex: 1 }}>
+                        <div className="d-flex flex-column flex-md-row align-items-md-end justify-content-between gap-4 mb-5 pb-4 border-bottom">
                             <div>
-                                <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-blue-950 mb-3">About Us</h1>
-                                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">Platform Telemetry & Architecture</p>
+                                <h1 className="display-4 fw-bolder mb-2" style={{ color: '#0f172a', letterSpacing: '-0.025em' }}>About Us</h1>
+                                <p className="text-secondary fw-bold text-uppercase small mb-0" style={{ letterSpacing: '0.1em', fontSize: '0.75rem' }}>Platform Telemetry & Architecture</p>
                             </div>
-                            <div className="w-16 h-16 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shadow-sm">
+                            <div className="rounded-3 d-flex align-items-center justify-content-center shadow-sm" style={{ width: '64px', height: '64px', backgroundColor: '#eff6ff', border: '1px solid #dbeafe', color: '#2563eb' }}>
                                 <Globe size={32} />
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-16">
-                            <div className="space-y-6">
-                                <p className="text-slate-600 leading-relaxed text-lg font-medium">
-                                    The <strong className="text-blue-900">Smart Scholarship Portal</strong> is a state-of-the-art digital infrastructure conceptualized to revolutionize the administration and disbursal of educational grants. Recognizing systemic structural barriers, this platform acts as the definitive bridge connecting verified institutional funds with deserving candidates.
+                        <div className="row g-5 align-items-start mb-5 pb-3">
+                            <div className="col-lg-6">
+                                <p className="lead text-secondary fw-medium mb-4" style={{ lineHeight: '1.8' }}>
+                                    The <strong style={{ color: '#1e3a8a' }}>Smart Scholarship Portal</strong> is a state-of-the-art digital infrastructure conceptualized to revolutionize the administration and disbursal of educational grants. Recognizing systemic structural barriers, this platform acts as the definitive bridge connecting verified institutional funds with deserving candidates.
                                 </p>
-                                <p className="text-slate-600 leading-relaxed">
+                                <p className="text-secondary" style={{ lineHeight: '1.8' }}>
                                     Our operational architecture integrates cryptographic verification mechanisms to guarantee precise capital allocation. By migrating the entire procedural lifecycle online, we have systematically eliminated redundant paperwork and physical friction points, allowing applicants to focus entirely on their scholastic endeavors.
                                 </p>
                             </div>
 
-                            <div className="relative rounded-2xl overflow-hidden shadow-lg border border-slate-200 group">
-                                <div className="absolute inset-0 bg-blue-900/10 group-hover:bg-blue-900/0 transition-colors z-10"></div>
-                                <img
-                                    src="https://images.pexels.com/photos/1438081/pexels-photo-1438081.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                                    alt="Students Studying"
-                                    className="w-full h-full object-cover aspect-video lg:aspect-square filter grayscale group-hover:grayscale-0 transition-all duration-700"
-                                    onError={(e) => {
-                                        e.target.style.display = 'none';
-                                        e.target.parentElement.insertAdjacentHTML('afterbegin', '<div class="w-full h-full aspect-video lg:aspect-square bg-slate-100 flex items-center justify-center text-slate-400 font-bold uppercase tracking-widest text-xs">Image Unavailable</div>');
-                                    }}
-                                />
+                            <div className="col-lg-6">
+                                <div className="rounded-4 overflow-hidden shadow border position-relative" style={{ aspectRatio: '1/1' }}>
+                                    <img
+                                        src="https://images.pexels.com/photos/1438081/pexels-photo-1438081.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                        alt="Students Studying"
+                                        className="w-100 h-100 object-fit-cover"
+                                        onError={(e) => {
+                                            e.target.style.display = 'none';
+                                            e.target.parentElement.insertAdjacentHTML('afterbegin', '<div class="w-100 h-100 d-flex align-items-center justify-content-center bg-light text-secondary fw-bold text-uppercase small" style={{letterSpacing: "0.1em"}}>Image Unavailable</div>');
+                                        }}
+                                    />
+                                </div>
                             </div>
                         </div>
 
                         <div>
-                            <div className="flex items-center gap-4 mb-8">
-                                <div className="w-1 h-8 bg-blue-600 rounded-full"></div>
-                                <h2 className="text-2xl font-bold text-slate-800 tracking-tight">Core Operational Objectives</h2>
+                            <div className="d-flex align-items-center gap-3 mb-4">
+                                <div className="rounded-pill" style={{ width: '4px', height: '32px', backgroundColor: '#2563eb' }}></div>
+                                <h2 className="h3 fw-bold text-dark mb-0" style={{ letterSpacing: '-0.025em' }}>Core Operational Objectives</h2>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="row g-4">
                                 {objectives.map((obj, idx) => (
-                                    <div key={idx} className={`bg-slate-50 border border-slate-200 p-6 rounded-2xl hover:border-blue-200 hover:shadow-md transition-all group ${idx === objectives.length - 1 ? 'md:col-span-2 md:w-1/2 md:mx-auto' : ''}`}>
-                                        <div className="flex items-start gap-4">
-                                            <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:border-blue-200 group-hover:text-blue-600 transition-all text-slate-400">
-                                                <obj.icon size={18} strokeWidth={2} />
-                                            </div>
-                                            <div>
-                                                <h3 className="text-sm font-bold text-slate-800 mb-2 group-hover:text-blue-900 transition-colors uppercase tracking-wide">{obj.title}</h3>
-                                                <p className="text-xs text-slate-500 font-medium leading-relaxed">{obj.desc}</p>
+                                    <div key={idx} className={`col-md-6 ${idx === objectives.length - 1 ? 'col-md-8 mx-auto' : ''}`}>
+                                        <div className="card h-100 bg-light border p-4 rounded-4 transition-all hover-shadow">
+                                            <div className="d-flex align-items-start gap-3">
+                                                <div className="rounded-3 bg-white border d-flex align-items-center justify-content-center flex-shrink-0 text-secondary transition-all icon-wrapper" style={{ width: '40px', height: '40px' }}>
+                                                    <obj.icon size={18} strokeWidth={2} />
+                                                </div>
+                                                <div>
+                                                    <h3 className="h6 fw-bold text-dark mb-2 text-uppercase title-wrapper" style={{ letterSpacing: '0.025em', fontSize: '0.875rem' }}>{obj.title}</h3>
+                                                    <p className="small text-secondary fw-medium mb-0" style={{ lineHeight: '1.6' }}>{obj.desc}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -112,9 +113,14 @@ const About = () => {
             <style dangerouslySetInnerHTML={{
                 __html: `
                 @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-                .animate-fade-in-up { animation: fadeInUp 0.6s ease-out forwards; opacity: 0; }
+                .fade-in-up { animation: fadeInUp 0.6s ease-out forwards; opacity: 0; }
+                .transition-all { transition: all 0.3s ease; }
+                .hover-shadow:hover { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important; border-color: #bfdbfe !important; }
+                .hover-shadow:hover .icon-wrapper { transform: scale(1.1); border-color: #bfdbfe !important; color: #2563eb !important; }
+                .hover-shadow:hover .title-wrapper { color: #1e3a8a !important; }
             `}} />
         </div>
     );
 };
+
 export default About;
