@@ -3,6 +3,57 @@ import Navbar from '../components/Navbar';
 import api from '../services/api';
 import { useNavigate } from 'react-router-dom';
 
+const defaultSchemes = [
+    {
+        _id: 'default-1',
+        name: "Merit-Cum-Means Scholarship for Professional Courses",
+        description: "Provide financial assistance to the poor and meritorious students belonging to minority communities to enable them to pursue professional and technical courses.",
+        amount: 25000,
+        deadline: new Date("2026-12-31").toISOString(),
+        eligibility: "Students with minimum 50% marks in previous examination and family income below 2.5 Lakhs."
+    },
+    {
+        _id: 'default-2',
+        name: "Post Matric Scholarships Scheme for Minorities",
+        description: "Scholarships to students studying in class XI, XII including technical and vocational courses, PhD etc.",
+        amount: 15000,
+        deadline: new Date("2026-10-31").toISOString(),
+        eligibility: "Must have secured not less than 50% marks or equivalent grade in the previous final examination."
+    },
+    {
+        _id: 'default-3',
+        name: "Central Sector Scheme of Scholarships",
+        description: "To provide financial assistance to meritorious students from low income families to meet a part of their day-to-day expenses while pursuing higher studies.",
+        amount: 12000,
+        deadline: new Date("2026-11-15").toISOString(),
+        eligibility: "Students who are above 80th percentile of successful candidates in the relevant stream."
+    },
+    {
+        _id: 'default-4',
+        name: "AICTE - Pragati Scholarship Scheme for Girl Students",
+        description: "Scheme being implemented by AICTE aimed at providing assistance for advancement of Girls pursuing Technical Education.",
+        amount: 50000,
+        deadline: new Date("2026-09-30").toISOString(),
+        eligibility: "Girl students admitted to first year of Degree/Diploma level course or second year of Degree/Diploma level course through lateral entry."
+    },
+    {
+        _id: 'default-5',
+        name: "National Means Cum Merit Scholarship",
+        description: "To award scholarships to meritorious students of economically weaker sections to arrest their drop out at class VIII and encourage them to continue the study at secondary stage.",
+        amount: 12000,
+        deadline: new Date("2026-08-31").toISOString(),
+        eligibility: "Students whose parental income from all sources is not more than Rs. 3,50,000/- per annum are eligible."
+    },
+    {
+        _id: 'default-6',
+        name: "Pre-Matric Scholarship Scheme for SC Students",
+        description: "To support parents of SC children for education of their wards studying in classes IX and X so that the incidence of drop-out is minimized.",
+        amount: 3000,
+        deadline: new Date("2026-07-31").toISOString(),
+        eligibility: "Student should belong to Scheduled Caste. His/her Parent/Guardian's income should not exceed Rs. 2.50 lakh per annum."
+    }
+];
+
 const Schemes = () => {
     const [schemes, setSchemes] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -12,9 +63,14 @@ const Schemes = () => {
         const fetchSchemes = async () => {
             try {
                 const { data } = await api.get('/public/schemes');
-                setSchemes(data);
+                if (data && data.length > 0) {
+                    setSchemes(data);
+                } else {
+                    setSchemes(defaultSchemes);
+                }
             } catch (error) {
                 console.error(error);
+                setSchemes(defaultSchemes);
             } finally {
                 setLoading(false);
             }
